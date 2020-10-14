@@ -1,1 +1,1 @@
-# OTUS.StockMarketReportGenerator
+Подумать добавить lombok
