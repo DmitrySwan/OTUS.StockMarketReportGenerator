@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Input assets</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Simple report</h1>
+<a href="simpleReportForm">Add asset</a>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr th:each ="asset : ${inputAssets}">
+            <td th:utext="${asset.ticker}">...</td>
+        </tr>
+    </table>
+</div>
+<a href="simpleReport">Show report</a>
+<br/><br/>
+</body>
+</html>

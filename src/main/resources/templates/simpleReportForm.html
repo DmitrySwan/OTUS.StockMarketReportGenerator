@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Simple Report Form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<form th:action="@{/simpleReportForm}"
+      th:object="${inputAssetForm}" method="POST">
+    Ticker:
+    <input type="text" th:field="*{ticker}" />
+    <br/>
+    <input type="submit" value="Create" />
+</form>
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;font-style:italic;">
+    ...
+</div>
+
+</body>
+</html>

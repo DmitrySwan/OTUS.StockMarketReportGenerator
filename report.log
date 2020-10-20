@@ -1,0 +1,4 @@
+2020-10-20 23:05:12 INFO  AbstractReportFormat:20 - stocks {UBER=UBER: 36.51}
+2020-10-20 23:06:28 INFO  AbstractReportFormat:20 - stocks {INTC=INTC: 53.7, UBER=UBER: 36.4443}
+2020-10-20 23:06:52 INFO  AbstractReportFormat:20 - stocks {YNDX=YNDX: 56.21, INTC=INTC: 53.64, UBER=UBER: 36.425}
+2020-10-20 23:08:02 INFO  AbstractReportFormat:20 - stocks {YNDX=YNDX: 56.22, INTC=INTC: 53.665, UBER=UBER: 36.44, BA=BA: 167.105}

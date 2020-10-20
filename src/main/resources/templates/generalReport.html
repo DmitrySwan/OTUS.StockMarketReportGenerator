@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>General report</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>General report</h1>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr th:each ="share : ${shares}">
+            <td th:utext="${share.name}">...</td>
+            <td th:utext="${share.purchasePrice}">...</td>
+            <td th:utext="${share.count}">...</td>
+            <td th:utext="${share.currentPrice}">...</td>
+            <td th:utext="${share.changeToday}">...</td>
+            <td th:utext="${share.changeTodayInPercent}">...</td>
+            <td th:utext="${share.priceChange}">...</td>
+            <td th:utext="${share.priceChangeInPercent}">...</td>
+            <td th:utext="${share.dividendPerShare}">...</td>
+            <td th:utext="${share.dividends}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
+
+BigDecimal purchasePrice;
+int count;
+String name;
+BigDecimal currentPrice;
+BigDecimal changeToday;
+BigDecimal changeTodayInPercent;
+Date dividendDate;
+BigDecimal dividendPerShare;
+BigDecimal priceChange;
+BigDecimal priceChangeInPercent;

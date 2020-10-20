@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Simple report</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Simple report</h1>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr th:each ="asset : ${assets}">
+            <td th:utext="${asset.name}">...</td>
+            <td th:utext="${asset.price}">...</td>
+            <td th:utext="${asset.changeFromAvg50InPercent}">...</td>
+            <td th:utext="${asset.dividendAnnualYield}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

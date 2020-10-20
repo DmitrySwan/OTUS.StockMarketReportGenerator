@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<h1>Choose report format</h1>
+<a th:href="@{/simpleReportForm}">simple</a>
+<a th:href="@{/generalReportForm}">general</a>
+<a th:href="@{/customReportForm}">custom</a>
+</body>
+
+</html>
