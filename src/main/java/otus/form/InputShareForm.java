@@ -3,7 +3,6 @@ package otus.form;
 import java.math.BigDecimal;
 
 public class InputShareForm extends InputAssetForm {
-    public String ticker;
     BigDecimal price;
     int count;
 

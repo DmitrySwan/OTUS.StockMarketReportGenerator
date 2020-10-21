@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Custom report</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Custom report</h1>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr th:each ="stock : ${stocks}">
+            <td th:utext="${stock.name}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,7 +1,6 @@
 package otus.model.reports;
 
 import otus.model.assets.Asset;
-import otus.model.assets.InputAsset;
 
 import java.io.IOException;
 import java.util.List;

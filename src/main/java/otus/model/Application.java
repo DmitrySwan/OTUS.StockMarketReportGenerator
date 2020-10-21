@@ -1,21 +1,14 @@
 package otus.model;
 
-import otus.model.assets.Asset;
-import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
-import com.opencsv.bean.ColumnPositionMappingStrategy;
-import com.opencsv.bean.CsvToBean;
 import org.apache.log4j.Logger;
+import otus.model.assets.Asset;
 import otus.model.reports.ReportFactory;
 import otus.model.reports.ReportFormat;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,7 +28,7 @@ public class Application {
         this.outputFile = outputFile;
     }
 
-    public  Application(ReportFactory factory) {
+    public Application(ReportFactory factory) {
         this.inputFile = new File("csvFile.csv");
         this.reportFormat = factory.createReportFormat();
     }
@@ -50,8 +43,8 @@ public class Application {
     }
 
     private void writeData(List<String[]> outputArrays) {
-        try(FileWriter output = new FileWriter(outputFile);
-            CSVWriter write = new CSVWriter(output)) {
+        try (FileWriter output = new FileWriter(outputFile);
+             CSVWriter write = new CSVWriter(output)) {
             outputArrays.stream().forEach(write::writeNext);
         } catch (Exception e) {
             e.printStackTrace();

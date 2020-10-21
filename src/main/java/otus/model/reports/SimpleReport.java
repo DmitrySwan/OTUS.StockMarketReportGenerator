@@ -1,8 +1,6 @@
 package otus.model.reports;
 
 import otus.model.assets.Asset;
-import otus.model.assets.GeneralStock;
-import otus.model.assets.InputAsset;
 import otus.model.assets.OutputAsset;
 import yahoofinance.Stock;
 import yahoofinance.quotes.stock.StockQuote;
