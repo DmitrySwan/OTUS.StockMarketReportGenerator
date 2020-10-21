@@ -21,32 +21,17 @@ public class GeneralReport extends AbstractReportFormat implements ReportFormat 
         Map<String, Stock> stocks = getStocks(assets);
         List<Asset> outputAssets = new LinkedList<>();
         assets.stream().forEach(asset -> {
-
-            String ticker = asset.getTicker();
-
-            Stock yahooStock = stocks.get(ticker);
+            Stock yahooStock = stocks.get(asset.getTicker());
             StockQuote stockQuote = yahooStock.getQuote();
             BigDecimal dividendPerShare = yahooStock.getDividend().getAnnualYield();
 
-            BigDecimal price = stockQuote.getPrice();
-
             InputShare inputShare = (InputShare) asset;
+
+            OutputShare outputShare = getOutputStock(inputShare, yahooStock.getName(), stockQuote, dividendPerShare);
+
             BigDecimal purchasePrice = inputShare.getPurchasePrice();
-            int count = inputShare.getCount();
-
-            OutputShare outputShare = new OutputShare(
-                    ticker,
-                    purchasePrice,
-                    count,
-                    yahooStock.getName(),
-                    price,
-                    stockQuote.getChange(),
-                    stockQuote.getChangeInPercent(),
-                    dividendPerShare
-            );
-
-            BigDecimal pricePerShareChange = price.subtract(purchasePrice);
-            BigDecimal countBigDecimal = BigDecimal.valueOf(count);
+            BigDecimal pricePerShareChange = stockQuote.getPrice().subtract(purchasePrice);
+            BigDecimal countBigDecimal = BigDecimal.valueOf(inputShare.getCount());
 
             outputShare.setPriceChange(pricePerShareChange.multiply(countBigDecimal));
             outputShare.setPriceChangeInPercent(
@@ -57,5 +42,17 @@ public class GeneralReport extends AbstractReportFormat implements ReportFormat 
             outputAssets.add(outputShare);
         });
         return outputAssets;
+    }
+
+    private OutputShare getOutputStock(InputShare share, String name,
+                                      StockQuote stockQuote, BigDecimal dividendPerShare) {
+        return new OutputShare(
+                share,
+                name,
+                stockQuote.getPrice(),
+                stockQuote.getChange(),
+                stockQuote.getChangeInPercent(),
+                dividendPerShare
+        );
     }
 }

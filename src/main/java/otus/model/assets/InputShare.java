@@ -10,10 +10,10 @@ public class InputShare extends InputAsset {
         super(ticker);
     }
 
-    public InputShare(String ticker, BigDecimal purchasePrice, int count) {
-        super(ticker);
-        this.purchasePrice = purchasePrice;
-        this.count = count;
+    public InputShare(InputShare share) {
+        super(share.getTicker());
+        this.purchasePrice = share.getPurchasePrice();
+        this.count = share.getCount();
     }
 
     public BigDecimal getPurchasePrice() {

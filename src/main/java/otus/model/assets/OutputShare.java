@@ -77,10 +77,10 @@ public class OutputShare extends InputShare {
         this.dividends = dividends;
     }
 
-    public OutputShare(String ticker, BigDecimal purchasePrice, int count,
+    public OutputShare(InputShare share,
                        String name, BigDecimal currentPrice, BigDecimal changeToday,
                        BigDecimal changeTodayInPercent, BigDecimal dividendPerShare) {
-        super(ticker, purchasePrice, count);
+        super(share);
         this.name = name;
         this.currentPrice = currentPrice;
         this.changeToday = changeToday;
