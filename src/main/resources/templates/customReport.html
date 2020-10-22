@@ -11,7 +11,12 @@
 <div>
     <table border="1">
         <tr th:each ="stock : ${stocks}">
+            <td th:utext="${stock.ticker}">...</td>
             <td th:utext="${stock.name}">...</td>
+            <td th:utext="${stock.sectorId}">...</td>
+            <td th:utext="${stock.price}">...</td>
+            <td th:utext="${stock.change}">...</td>
+            <td th:utext="${stock.changeInPercent}">...</td>
         </tr>
     </table>
 </div>

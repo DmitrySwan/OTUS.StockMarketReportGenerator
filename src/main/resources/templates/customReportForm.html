@@ -12,9 +12,11 @@
       th:object="${inputStockForm}" method="POST">
     Ticker:
     <input type="text" th:field="*{ticker}" />
-    <select th:field="*{groupId}">
-        <option th:value="Finance" th:text="Finance"></option>
+    <select th:field="*{sectorId}">
+        <option th:value="Financial" th:text="Finance"></option>
         <option th:value="Tech" th:text="Tech"></option>
+        <option th:value="Oil" th:text="Oil"></option>
+        <option th:value="Fast-Food" th:text="Fast-Food"></option>
     </select>
     <br/>
     <input type="submit" value="Create" />

@@ -1,10 +1,18 @@
 package otus.model.assets;
 
 public class InputStock extends InputAsset {
-    String groupId;
+    String sectorId;
 
-    public InputStock(String ticker, String groupId) {
+    public InputStock(String ticker, String sectorId) {
         super(ticker);
-        this.groupId = groupId;
+        this.sectorId = sectorId;
+    }
+
+    public String getSectorId() {
+        return sectorId;
+    }
+
+    public void setSectorId(String sectorId) {
+        this.sectorId = sectorId;
     }
 }

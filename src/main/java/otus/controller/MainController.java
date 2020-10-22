@@ -142,12 +142,12 @@ public class MainController {
                             @ModelAttribute("inputStockForm") InputStockForm inputStockForm) {
 
         String ticker = inputStockForm.getTicker();
-        String groupId = inputStockForm.getGroupId();
+        String sectorId = inputStockForm.getSectorId();
 
         if (ticker != null && ticker.length() > 0
-                && groupId != null && ticker.length() > 0
-                && inputStocks.stream().noneMatch(share -> ticker.equals(share.getTicker()))) {//todo ???
-            Asset inputStock = new InputStock(ticker, groupId);
+                && sectorId != null && ticker.length() > 0
+                && inputStocks.stream().noneMatch(stock -> ticker.equals(stock.getTicker()))) {//todo ???
+            Asset inputStock = new InputStock(ticker, sectorId);
             inputStocks.add(inputStock);
 
             return "redirect:/inputStockList";
@@ -188,6 +188,7 @@ public class MainController {
                                @PathVariable("average") CustomReport.ChangeAverage average) {
         Application app = new Application(new CustomReportFactory(average));
         stocks = app.report(inputStocks);
+        System.out.println("test " + stocks);
         model.addAttribute("stocks", stocks);
         return "customReport";
     }

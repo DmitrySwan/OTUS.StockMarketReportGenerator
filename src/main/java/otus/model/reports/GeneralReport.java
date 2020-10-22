@@ -46,7 +46,7 @@ public class GeneralReport extends AbstractReportFormat implements ReportFormat 
     }
 
     private OutputShare createOutputStock(InputShare share, String name,
-                                      StockQuote stockQuote, BigDecimal dividendPerShare) {
+                                          StockQuote stockQuote, BigDecimal dividendPerShare) {
         return new OutputShare(
                 share,
                 name,

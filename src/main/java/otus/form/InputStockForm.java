@@ -1,16 +1,14 @@
 package otus.form;
 
-import java.util.Date;
-
 public class InputStockForm extends InputAssetForm {
-    String groupId;
+    String sectorId;
 
-    public String getGroupId() {
-        return groupId;
+    public String getSectorId() {
+        return sectorId;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+    public void setSectorId(String sectorId) {
+        this.sectorId = sectorId;
     }
 
 
