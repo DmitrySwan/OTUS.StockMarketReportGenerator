@@ -27,15 +27,21 @@ public class MainController {
     @Value("${error.message}")
     private String errorMessage;
 
-    private List<Asset> assets = new ArrayList<>();
-    private List<Asset> shares = new ArrayList<>();
-    private List<Asset> stocks = new ArrayList<>();
-    private List<Asset> inputAssets = new ArrayList<>();
-    private List<Asset> inputShares = new ArrayList<>();
-    private List<Asset> inputStocks = new ArrayList<>();
+    private List<Asset> assets;
+    private List<Asset> shares;
+    private List<Asset> stocks;
+    private List<Asset> inputAssets;
+    private List<Asset> inputShares;
+    private List<Asset> inputStocks;
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model) {
+        assets = new ArrayList<>();
+        shares = new ArrayList<>();
+        stocks = new ArrayList<>();
+        inputAssets = new ArrayList<>();
+        inputShares = new ArrayList<>();
+        inputStocks = new ArrayList<>();
         return "index";
     }
 

@@ -1,22 +1,22 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html class="center"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Input stocks</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
 <h1>Custom report</h1>
 <a href="customReportForm">Add stock</a>
 <br/><br/>
 <div>
-    <table border="1">
+    <table class="table_blur" border="1">
         <tr th:each ="stock : ${inputStocks}">
             <td th:utext="${stock.ticker}">...</td>
         </tr>
     </table>
 </div>
-<a href="averageChoice">Choose average</a>
+<a href="averageChoice" class="absolute">Choose average</a>
 <br/><br/>
 </body>
 </html>

@@ -1,17 +1,16 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html class="center"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Custom Report Form</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
 <br/>
 
 <form th:action="@{/customReportForm}"
       th:object="${inputStockForm}" method="POST">
-    Ticker:
-    <input type="text" th:field="*{ticker}" />
+    <input type="text" th:field="*{ticker}"  placeholder="type ticker"/>
     <select th:field="*{sectorId}">
         <option th:value="Financial" th:text="Finance"></option>
         <option th:value="Tech" th:text="Tech"></option>
@@ -19,7 +18,7 @@
         <option th:value="Fast-Food" th:text="Fast-Food"></option>
     </select>
     <br/>
-    <input type="submit" value="Create" />
+    <input type="submit"  value="Create" />
 </form>
 
 <!-- Check if errorMessage is not null and not empty -->

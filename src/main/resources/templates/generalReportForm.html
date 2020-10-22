@@ -1,19 +1,18 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html class="center"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>General Report Form</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
 <br/>
 
 <form th:action="@{/generalReportForm}"
       th:object="${inputShareForm}" method="POST">
-    Ticker:
-    <input type="text" th:field="*{ticker}" />
-    <input type="text" th:field="*{price}" />
-    <input type="text" th:field="*{count}" />
+    <input type="text" th:field="*{ticker}" placeholder="type ticker" />
+    <input type="text" th:field="*{price}" placeholder="type purchase price" />
+    <input type="text" th:field="*{count}" placeholder="type count" />
     <br/>
     <input type="submit" value="Create" />
 </form>

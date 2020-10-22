@@ -1,16 +1,15 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html class="center"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Simple Report Form</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
 
 <form th:action="@{/simpleReportForm}"
       th:object="${inputAssetForm}" method="POST">
-    Ticker:
-    <input type="text" th:field="*{ticker}" />
+    <input type="text" th:field="*{ticker}" placeholder="type ticker"/>
     <br/>
     <input type="submit" value="Create" />
 </form>
