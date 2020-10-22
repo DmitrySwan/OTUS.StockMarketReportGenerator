@@ -3,9 +3,8 @@ package otus.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import otus.form.Average;
 import otus.form.InputAssetForm;
 import otus.form.InputShareForm;
 import otus.form.InputStockForm;
@@ -14,6 +13,8 @@ import otus.model.assets.Asset;
 import otus.model.assets.InputAsset;
 import otus.model.assets.InputShare;
 import otus.model.assets.InputStock;
+import otus.model.reports.CustomReport;
+import otus.model.reports.CustomReportFactory;
 import otus.model.reports.GeneralReportFactory;
 import otus.model.reports.SimpleReportFactory;
 
@@ -35,7 +36,6 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model) {
-
         return "index";
     }
 
@@ -87,7 +87,6 @@ public class MainController {
 
         InputShareForm inputShareForm = new InputShareForm();
         model.addAttribute("inputShareForm", inputShareForm);
-
         return "generalReportForm";
     }
 
@@ -143,19 +142,19 @@ public class MainController {
                             @ModelAttribute("inputStockForm") InputStockForm inputStockForm) {
 
         String ticker = inputStockForm.getTicker();
+        String groupId = inputStockForm.getGroupId();
 
-        /*if (ticker != null && ticker.length() > 0
-                && price != null && BigDecimal.ZERO.compareTo(price) < 0
-                && count > 0
-                && inputShares.stream().noneMatch(share -> ticker.equals(share.getTicker()))) {//todo ???
-            Asset inputStock = new InputStock(ticker, price, count);
-            inputShares.add(inputStock);
+        if (ticker != null && ticker.length() > 0
+                && groupId != null && ticker.length() > 0
+                && inputStocks.stream().noneMatch(share -> ticker.equals(share.getTicker()))) {//todo ???
+            Asset inputStock = new InputStock(ticker, groupId);
+            inputStocks.add(inputStock);
 
             return "redirect:/inputStockList";
-        }*/
+        }
 
         model.addAttribute("errorMessage", errorMessage);
-        return "generalReportForm";
+        return "customReportForm";
     }
 
     @RequestMapping(value = {"/inputStockList"}, method = RequestMethod.GET)
@@ -166,9 +165,28 @@ public class MainController {
         return "inputStockList";
     }
 
-    @RequestMapping(value = {"/customReport"}, method = RequestMethod.GET)
-    public String customReport(Model model) {
-        Application app = new Application(new GeneralReportFactory());
+    @RequestMapping(value = {"/averageChoice"}, method = RequestMethod.GET)
+    public String averageChoice(Model model) {
+        model.addAttribute("averages", CustomReport.ChangeAverage.values());
+        model.addAttribute("average", new Average());
+        return "averageChoice";
+    }
+
+    @RequestMapping(value = {"/averageChoice"}, method = RequestMethod.POST)
+    public String averageChoice(Model model, @ModelAttribute("average") Average average) {
+        CustomReport.ChangeAverage changeAverage = average.getChangeAverage();
+        if (changeAverage != null) {
+            return "redirect:/customReport/" + changeAverage;
+        }
+
+        model.addAttribute("errorMessage", errorMessage);
+        return "averageChoice";
+    }
+
+    @RequestMapping(value = {"/customReport/{average}"},method = RequestMethod.GET)
+    public String customReport(Model model,
+                               @PathVariable("average") CustomReport.ChangeAverage average) {
+        Application app = new Application(new CustomReportFactory(average));
         stocks = app.report(inputStocks);
         model.addAttribute("stocks", stocks);
         return "customReport";

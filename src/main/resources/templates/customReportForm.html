@@ -12,9 +12,10 @@
       th:object="${inputStockForm}" method="POST">
     Ticker:
     <input type="text" th:field="*{ticker}" />
-    <input type="text" th:field="*{groupId}" />
-    <input type="date" th:field="*{dateFrom}" />
-    <input type="date" th:field="*{dateTo}" />
+    <select th:field="*{groupId}">
+        <option th:value="Finance" th:text="Finance"></option>
+        <option th:value="Tech" th:text="Tech"></option>
+    </select>
     <br/>
     <input type="submit" value="Create" />
 </form>

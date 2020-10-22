@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Average choice</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<br/>
+<form th:action="@{/averageChoice}"
+      th:object="${average}" method="POST">
+    <div th:each="average : ${averages}">
+        <input id="average" name="average" type="radio" th:field="*{changeAverage}" th:value="${average}"/>
+        <label for="average" th:text="${average.description}">Something is wrong !</label>
+    </div>
+    <br/>
+    <input type="submit" value="Create" />
+</form>
+    <br/>
+</body>
+</html>
