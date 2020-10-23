@@ -10,6 +10,14 @@
 <br/><br/>
 <div>
     <table class="table_blur" border="1">
+        <tr>
+            <td>Ticket</td>
+            <td>Name</td>
+            <td>Sector</td>
+            <td>Price</td>
+            <td>Change</td>
+            <td>Change in percent</td>
+        </tr>
         <tr th:each ="stock : ${stocks}">
             <td th:utext="${stock.ticker}">...</td>
             <td th:utext="${stock.name}">...</td>
@@ -20,6 +28,6 @@
         </tr>
     </table>
 </div>
-<a href="index" class="absolute">Start</a>
+<a href="/" class="absolute">Start</a>
 </body>
 </html>

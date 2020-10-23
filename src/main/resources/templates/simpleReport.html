@@ -10,7 +10,15 @@
 <br/><br/>
 <div>
     <table class="table_blur" border="1">
+        <tr>
+            <td>Ticket</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Change from average 50 in percent</td>
+            <td>Dividends</td>
+        </tr>
         <tr th:each ="asset : ${assets}">
+            <td th:utext="${asset.ticker}">...</td>
             <td th:utext="${asset.name}">...</td>
             <td th:utext="${asset.price}">...</td>
             <td th:utext="${asset.changeFromAvg50InPercent}">...</td>

@@ -11,6 +11,11 @@
 <br/><br/>
 <div>
     <table class="table_blur" border="1">
+        <tr>
+            <td>Ticket</td>
+            <td>Purchase price</td>
+            <td>Count</td>
+        </tr>
         <tr th:each ="share : ${inputShares}">
             <td th:utext="${share.ticker}">...</td>
             <td th:utext="${share.purchasePrice}">...</td>

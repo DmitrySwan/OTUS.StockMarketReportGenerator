@@ -11,6 +11,9 @@
 <br/><br/>
 <div>
     <table class="table_blur" border="1">
+        <tr>
+            <td>Ticket</td>
+        </tr>
         <tr th:each ="asset : ${inputAssets}">
             <td th:utext="${asset.ticker}">...</td>
         </tr>

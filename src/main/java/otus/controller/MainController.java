@@ -194,7 +194,6 @@ public class MainController {
                                @PathVariable("average") CustomReport.ChangeAverage average) {
         Application app = new Application(new CustomReportFactory(average));
         stocks = app.report(inputStocks);
-        System.out.println("test " + stocks);
         model.addAttribute("stocks", stocks);
         return "customReport";
     }

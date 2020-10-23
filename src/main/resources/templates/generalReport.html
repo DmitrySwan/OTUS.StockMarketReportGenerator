@@ -10,7 +10,21 @@
 <br/><br/>
 <div>
     <table class="table_blur" border="1">
+        <tr>
+            <td>Ticket</td>
+            <td>Name</td>
+            <td>Purchase price</td>
+            <td>Count</td>
+            <td>Current price</td>
+            <td>Change today</td>
+            <td>Change today in percent</td>
+            <td>Shares price change</td>
+            <td>Shares price change in percent</td>
+            <td>Dividend per share</td>
+            <td>Full dividends</td>
+        </tr>
         <tr th:each ="share : ${shares}">
+            <td th:utext="${share.ticker}">...</td>
             <td th:utext="${share.name}">...</td>
             <td th:utext="${share.purchasePrice}">...</td>
             <td th:utext="${share.count}">...</td>
