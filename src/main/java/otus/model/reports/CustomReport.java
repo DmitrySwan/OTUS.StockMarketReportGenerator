@@ -41,45 +41,38 @@ public class CustomReport extends AbstractReportFormat implements ReportFormat {
             StockQuote quote = yahooStock.getQuote();
             OutputStock outputStock =
                     new OutputStock(asset.getTicker(), inputStock.getSectorId(),  yahooStock.getName(), quote.getPrice());
-            outputStock = setChangeAndChangeInPercent(outputStock, yahooStock.getQuote());
+            setChangeAndChangeInPercent(outputStock, yahooStock.getQuote());
             outputStocks.add(outputStock);
         });
         return outputStocks;
     }
 
-    private OutputStock setChangeAndChangeInPercent(OutputStock stock, StockQuote quote) {
+    private void setChangeAndChangeInPercent(OutputStock stock, StockQuote quote) {
         BigDecimal change = null;
         BigDecimal changeInPercent = null;
         Calendar calendar = Calendar.getInstance();
-        if (ChangeAverage.LAST_FIFTY_DAYS.equals(average)) {
-            calendar.add(Calendar.DAY_OF_MONTH, -50);
-            try {
-                HistoricalQuote stockByDate = YahooFinance.get(stock.getTicker(), calendar).getHistory(calendar).stream().findFirst().get();
-                System.out.println(stockByDate.getAdjClose());
-                change = quote.getPrice().subtract(stockByDate.getAdjClose());
-                changeInPercent = stockByDate.getAdjClose().multiply(ONE_HUNDRED).divide(quote.getPrice(), 2, RoundingMode.HALF_UP);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else if (ChangeAverage.LAST_TWO_HUNDRED_DAYS.equals(average)) {
-            calendar.add(Calendar.DAY_OF_MONTH, -200);
-            try {
-                HistoricalQuote stockByDate = YahooFinance.get(stock.getTicker(), calendar).getHistory(calendar).stream().findFirst().get();
-                System.out.println(stockByDate.getAdjClose());
-                change = quote.getPrice().subtract(stockByDate.getAdjClose());
-                changeInPercent = stockByDate.getAdjClose().multiply(ONE_HUNDRED).divide(quote.getPrice(), 2, RoundingMode.HALF_UP);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
+        if(ChangeAverage.LAST_DAY.equals(average)) {
             change = quote.getChange();
             changeInPercent = quote.getChangeInPercent();
+            stock.setChange(change);
+            stock.setChangeInPercent(changeInPercent);
+            return;
+        }
+        if (ChangeAverage.LAST_FIFTY_DAYS.equals(average)) {
+            calendar.add(Calendar.DAY_OF_MONTH, -50);
+
+        } else {
+            calendar.add(Calendar.DAY_OF_MONTH, -200);
+        }
+        try {
+            HistoricalQuote stockByDate = YahooFinance.get(stock.getTicker(), calendar).getHistory(calendar).stream().findFirst().get();
+            change = quote.getPrice().subtract(stockByDate.getAdjClose()).setScale(2, BigDecimal.ROUND_HALF_UP);
+            changeInPercent = change.multiply(ONE_HUNDRED).divide(stockByDate.getAdjClose(), 2, RoundingMode.HALF_UP);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         stock.setChange(change);
         stock.setChangeInPercent(changeInPercent);
-        return stock;
     }
 
     private List<Asset> getListWithSectorResult(List<OutputStock> outputStocks) {
