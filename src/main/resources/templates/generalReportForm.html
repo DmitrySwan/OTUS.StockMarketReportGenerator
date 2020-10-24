@@ -11,7 +11,7 @@
 <form th:action="@{/generalReportForm}"
       th:object="${inputShareForm}" method="POST">
     <input type="text" th:field="*{ticker}" placeholder="type ticker" />
-    <input type="text" th:field="*{price}" placeholder="type purchase price" />
+    <input type="text" th:field="*{price}" placeholder="type purchase price, $" />
     <input type="text" th:field="*{count}" placeholder="type count" />
     <br/>
     <input type="submit" value="Create" />

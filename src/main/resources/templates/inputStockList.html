@@ -12,10 +12,12 @@
 <div>
     <table class="table_blur" border="1">
         <tr>
-            <td>Ticket</td>
+            <th>Ticket</th>
+            <th>Sector</th>
         </tr>
         <tr th:each ="stock : ${inputStocks}">
             <td th:utext="${stock.ticker}">...</td>
+            <td th:utext="${stock.sectorId}">...</td>
         </tr>
     </table>
 </div>

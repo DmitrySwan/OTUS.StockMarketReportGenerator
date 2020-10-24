@@ -1,5 +1,5 @@
 h1 {
-    color:cornflowerblue;
+    color:#9595b6;
 }
 
 html {
@@ -81,7 +81,7 @@ table th, table td {
 }
 
 a:link, a:visited {
-    background-color: green;
+    background-color: #9595b6;
     color: white;
     padding: 14px 25px;
     text-align: center;
@@ -90,19 +90,19 @@ a:link, a:visited {
 }
 
 a:hover, a:active {
-    background-color: green;
+    background-color: #9595b6;
 }
 
 a.absolute {
     position: absolute;
     right: 50px;
     bottom: 50px;
-    background-color: green;
+    background-color: #9595b6;
     text-align: center;
 }
 
 button {
-    background-color: #4CAF50; /* Green */
+    background-color: #9595b6;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -129,7 +129,7 @@ input[type=text], select {
 input[type=submit] {
     text-align: center;
     width: 20%;
-    background-color: #4CAF50;
+    background-color: #9595b6;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -139,7 +139,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #9595b6;
 }
 
 div {

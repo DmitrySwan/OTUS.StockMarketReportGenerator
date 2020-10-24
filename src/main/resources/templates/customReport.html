@@ -11,20 +11,20 @@
 <div>
     <table class="table_blur" border="1">
         <tr>
-            <td>Ticket</td>
-            <td>Name</td>
-            <td>Sector</td>
-            <td>Price</td>
-            <td>Change</td>
-            <td>Change in percent</td>
+            <th>Ticket</th>
+            <th>Name</th>
+            <th>Sector</th>
+            <th>Price, $</th>
+            <th>Change, $</th>
+            <th>Change in percent, %</th>
         </tr>
         <tr th:each ="stock : ${stocks}">
             <td th:utext="${stock.ticker}">...</td>
             <td th:utext="${stock.name}">...</td>
             <td th:utext="${stock.sectorId}">...</td>
             <td th:utext="${stock.price}">...</td>
-            <td th:utext="${stock.change}">...</td>
-            <td th:utext="${stock.changeInPercent}">...</td>
+            <td th:utext="${stock.change}" th:style="${stock.change > 0 ? 'color: green;' : 'color: red;'}">...</td>
+            <td th:utext="${stock.changeInPercent}" th:style="${stock.changeInPercent > 0 ? 'color: green;' : 'color: red;'}">...</td>
         </tr>
     </table>
 </div>

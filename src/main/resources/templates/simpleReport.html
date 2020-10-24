@@ -11,17 +11,17 @@
 <div>
     <table class="table_blur" border="1">
         <tr>
-            <td>Ticket</td>
-            <td>Name</td>
-            <td>Price</td>
-            <td>Change from average 50 in percent</td>
-            <td>Dividends</td>
+            <th>Ticket</th>
+            <th>Name</th>
+            <th>Price, $</th>
+            <th>Change from average 50 in percent, %</th>
+            <th>Dividends, $</th>
         </tr>
         <tr th:each ="asset : ${assets}">
             <td th:utext="${asset.ticker}">...</td>
             <td th:utext="${asset.name}">...</td>
             <td th:utext="${asset.price}">...</td>
-            <td th:utext="${asset.changeFromAvg50InPercent}">...</td>
+            <td th:utext="${asset.changeFromAvg50InPercent}" th:style="${asset.changeFromAvg50InPercent > 0 ? 'color: green;' : 'color: red;'}">...</td>
             <td th:utext="${asset.dividendAnnualYield}">...</td>
         </tr>
     </table>

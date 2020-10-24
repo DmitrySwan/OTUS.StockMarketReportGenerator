@@ -5,18 +5,18 @@ import otus.model.assets.Asset;
 import otus.model.assets.InputStock;
 import otus.model.assets.OutputStock;
 import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
+import yahoofinance.histquotes.HistoricalQuote;
 import yahoofinance.quotes.stock.StockQuote;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CustomReport extends AbstractReportFormat implements ReportFormat {
+    private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
 
     private static final String SECTOR = "sector";
     private ChangeAverage average;
@@ -48,14 +48,31 @@ public class CustomReport extends AbstractReportFormat implements ReportFormat {
     }
 
     private OutputStock setChangeAndChangeInPercent(OutputStock stock, StockQuote quote) {
-        BigDecimal change;
-        BigDecimal changeInPercent;
+        BigDecimal change = null;
+        BigDecimal changeInPercent = null;
+        Calendar calendar = Calendar.getInstance();
         if (ChangeAverage.LAST_FIFTY_DAYS.equals(average)) {
-            change = quote.getChangeFromAvg50();
-            changeInPercent = quote.getChangeFromAvg50InPercent();
+            calendar.add(Calendar.DAY_OF_MONTH, -50);
+            try {
+                HistoricalQuote stockByDate = YahooFinance.get(stock.getTicker(), calendar).getHistory(calendar).stream().findFirst().get();
+                System.out.println(stockByDate.getAdjClose());
+                change = quote.getPrice().subtract(stockByDate.getAdjClose());
+                changeInPercent = stockByDate.getAdjClose().multiply(ONE_HUNDRED).divide(quote.getPrice(), 2, RoundingMode.HALF_UP);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else if (ChangeAverage.LAST_TWO_HUNDRED_DAYS.equals(average)) {
-            change = quote.getChangeFromAvg200();
-            changeInPercent = quote.getChangeFromAvg200InPercent();
+            calendar.add(Calendar.DAY_OF_MONTH, -200);
+            try {
+                HistoricalQuote stockByDate = YahooFinance.get(stock.getTicker(), calendar).getHistory(calendar).stream().findFirst().get();
+                System.out.println(stockByDate.getAdjClose());
+                change = quote.getPrice().subtract(stockByDate.getAdjClose());
+                changeInPercent = stockByDate.getAdjClose().multiply(ONE_HUNDRED).divide(quote.getPrice(), 2, RoundingMode.HALF_UP);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             change = quote.getChange();
             changeInPercent = quote.getChangeInPercent();

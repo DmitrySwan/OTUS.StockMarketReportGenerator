@@ -11,17 +11,17 @@
 <div>
     <table class="table_blur" border="1">
         <tr>
-            <td>Ticket</td>
-            <td>Name</td>
-            <td>Purchase price</td>
-            <td>Count</td>
-            <td>Current price</td>
-            <td>Change today</td>
-            <td>Change today in percent</td>
-            <td>Shares price change</td>
-            <td>Shares price change in percent</td>
-            <td>Dividend per share</td>
-            <td>Full dividends</td>
+            <th>Ticket</th>
+            <th>Name</th>
+            <th>Purchase price, $</th>
+            <th>Count</th>
+            <th>Current price, $</th>
+            <th>Change today, $</th>
+            <th>Change today in percent, %</th>
+            <th>Shares price change, $</th>
+            <th>Shares price change in percent, %</th>
+            <th>Dividend per share, $</th>
+            <th>Full dividends, $</th>
         </tr>
         <tr th:each ="share : ${shares}">
             <td th:utext="${share.ticker}">...</td>
@@ -29,10 +29,10 @@
             <td th:utext="${share.purchasePrice}">...</td>
             <td th:utext="${share.count}">...</td>
             <td th:utext="${share.currentPrice}">...</td>
-            <td th:utext="${share.changeToday}">...</td>
-            <td th:utext="${share.changeTodayInPercent}">...</td>
-            <td th:utext="${share.priceChange}">...</td>
-            <td th:utext="${share.priceChangeInPercent}">...</td>
+            <td th:utext="${share.changeToday}" th:style="${share.changeToday > 0 ? 'color: green;' : 'color: red;'}">...</td>
+            <td th:utext="${share.changeTodayInPercent}" th:style="${share.changeTodayInPercent > 0 ? 'color: green;' : 'color: red;'}">...</td>
+            <td th:utext="${share.priceChange}" th:style="${share.priceChange > 0 ? 'color: green;' : 'color: red;'}">...</td>
+            <td th:utext="${share.priceChangeInPercent}" th:style="${share.priceChangeInPercent > 0 ? 'color: green;' : 'color: red;'}">...</td>
             <td th:utext="${share.dividendPerShare}">...</td>
             <td th:utext="${share.dividends}">...</td>
         </tr>
