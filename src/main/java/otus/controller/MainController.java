@@ -151,7 +151,7 @@ public class MainController {
         String sectorId = inputStockForm.getSectorId();
 
         if (ticker != null && ticker.length() > 0
-                && sectorId != null && ticker.length() > 0
+                && sectorId != null && sectorId.length() > 0
                 && inputStocks.stream().noneMatch(stock -> ticker.equals(stock.getTicker()))) {//todo ???
             Asset inputStock = new InputStock(ticker, sectorId);
             inputStocks.add(inputStock);
