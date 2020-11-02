@@ -1,6 +1,7 @@
 package otus.model.reports;
 
 import org.apache.commons.lang3.StringUtils;
+import otus.model.exception.HistoricalQuoteException;
 import otus.model.assets.Asset;
 import otus.model.assets.InputStock;
 import otus.model.assets.OutputStock;
@@ -65,10 +66,11 @@ public class CustomReport extends AbstractReportFormat implements ReportFormat {
             calendar.add(Calendar.DAY_OF_MONTH, -200);
         }
         try {
-            HistoricalQuote stockByDate = YahooFinance.get(stock.getTicker(), calendar).getHistory(calendar).stream().findFirst().get();
+            HistoricalQuote stockByDate = YahooFinance.get(stock.getTicker(), calendar).getHistory(calendar)
+                    .stream().findFirst().orElseThrow(() -> new HistoricalQuoteException(stock.getTicker(), calendar));
             change = quote.getPrice().subtract(stockByDate.getAdjClose()).setScale(2, BigDecimal.ROUND_HALF_UP);
             changeInPercent = change.multiply(ONE_HUNDRED).divide(stockByDate.getAdjClose(), 2, RoundingMode.HALF_UP);
-        } catch (IOException e) {
+        } catch (IOException | HistoricalQuoteException e) {
             e.printStackTrace();
         }
         stock.setChange(change);
